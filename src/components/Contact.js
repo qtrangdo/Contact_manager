@@ -14,6 +14,10 @@ class Contact extends Component {
         })
     }
 
+    onDeleteClick = () =>{
+        this.props.deleteClickHandle();
+    }
+
     render() {
         const { name, email, phone } = this.props.contact;
         const { showContactInfo } = this.state;
@@ -24,6 +28,12 @@ class Contact extends Component {
                     <i
                         onClick={this.onShowClick}
                         className="fas fa-angle-down"
+                        style={{ cursor:'pointer'}}
+                    ></i>
+                    <i  
+                        onClick={this.onDeleteClick}
+                        className='fas fa-times'
+                        style={{ cursor: 'pointer', float: 'right', color: 'red'}}
                     ></i></h4>
                 {showContactInfo
                     ? (<ul className='list-group'>
@@ -39,6 +49,7 @@ class Contact extends Component {
 
 Contact.propTypes = {
     contact: PropTypes.object.isRequired,
+    deleteClickHandle: PropTypes.func.isRequired
 }
 
 export default Contact;
