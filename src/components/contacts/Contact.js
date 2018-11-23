@@ -16,9 +16,16 @@ class Contact extends Component {
         })
     }
 
-    onDeleteClick = (id, dispatch) => {
-        axios.delete(`https://jsonplaceholder.typicode.com/users/${id}`)
-        .then (res => dispatch({type: 'DELETE_CONTACT', payload: id}))
+    onDeleteClick = async (id, dispatch) => {
+        try {
+          await axios
+          .delete(`https://jsonplaceholder.typicode.com/users/${id}`);
+          dispatch({type: 'DELETE_CONTACT', payload: id});
+        } catch (err) {
+            dispatch({type: 'DELETE_CONTACT', payload: id});
+        }
+        //use Try to delete new added contact for this app
+        //don't do it when there is real database
     }
 
     render() {

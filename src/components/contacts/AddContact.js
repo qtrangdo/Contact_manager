@@ -11,7 +11,7 @@ class AddContact extends Component {
         errors: {}
     };
 
-    onSubmit = (dispatch, event) => {
+    onSubmit = async (dispatch, event) => {
         event.preventDefault();
         const { name, email, phone } = this.state;
         // Check for Errors
@@ -34,8 +34,9 @@ class AddContact extends Component {
             phone: phone
         }
 
-        axios.post('https://jsonplaceholder.typicode.com/users', newContact)
-        .then(res => dispatch({ type: 'ADD_CONTACT', payload: res.data }))
+        const res = await axios
+          .post('https://jsonplaceholder.typicode.com/users', newContact);
+        dispatch({ type: 'ADD_CONTACT', payload: res.data });
 
 
         //clear input field after submit
