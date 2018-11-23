@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { Consumer } from '../../context';
 import axios from 'axios';
 
@@ -44,11 +45,24 @@ class Contact extends Component {
                                     className="fas fa-angle-down"
                                     style={{ cursor: 'pointer' }}
                                 ></i>
+                                
                                 <i
                                     onClick={this.onDeleteClick.bind(this, id, dispatch)}
                                     className='fas fa-times'
                                     style={{ cursor: 'pointer', float: 'right', color: 'red' }}
                                 ></i>
+
+                                <Link to = { `contact/edit/${id}`}>
+                                    <i 
+                                        className='fas fa-pencil-alt'
+                                        style= {{
+                                            cursor: 'pointer',
+                                            float: 'right',
+                                            color: 'black',
+                                            marginRight: '1rem'
+                                        }}
+                                    ></i>
+                                </Link>
                             </h4>
                             {showContactInfo
                                 ? (<ul className='list-group'>
